@@ -1,0 +1,16 @@
+{
+  "name": "国王",
+  "description": "国王是一个非常强大的角色，可以拿剑",
+  "health": 30,
+  "strength": 10,
+  "agility": 5,
+  "intelligence": 5,
+  "charisma": 5,
+  "luck": 5,
+  "defense": 5,
+  "speed": 5,
+  "move": 5,
+  "skill": [
+    ""
+  ]
+}

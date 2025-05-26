@@ -1,0 +1,13 @@
+[
+  {
+    "name": "雅木",
+    "description": "索菲亚王国的王国国王",
+    "sex": "男",
+    "age": "40",
+    "head": "./assets/character/portraits_00.png",
+    "head_width": 55,
+    "head_height": 55,
+    "occupation": "国王",
+    "prestige": "国王"
+  }
+]

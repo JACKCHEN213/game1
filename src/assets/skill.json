@@ -1,0 +1,147 @@
+[
+  {
+    "name": "连击",
+    "description": "攻击时若速度≥对手+1，可连续攻击两次。",
+    "type": "passive"
+  },
+  {
+    "name": "连舞",
+    "description": "有一定概率多回合连续攻击",
+    "type": "active"
+  },
+  {
+    "name": "行云流水",
+    "description": "连贯所有攻击",
+    "type": "active"
+  },
+  {
+    "name": "破甲",
+    "description": "对手防御无视为1/3",
+    "type": "active"
+  },
+  {
+    "name": "眩晕",
+    "description": "攻击有一定概率使对手无法攻击",
+    "type": "active"
+  },
+  {
+    "name": "亢奋",
+    "description": "受的伤害越多，行动力越多",
+    "type": "active"
+  },
+  {
+    "name": "夹击",
+    "description": "腹背受敌，攻击+3，命中+15",
+    "type": "active"
+  },
+  {
+    "name": "加倍奉还",
+    "description": "收到攻击时，下次攻击增加上次受到的伤害值到攻击",
+    "type": "active"
+  },
+  {
+    "name": "贯通",
+    "description": "根据移动距离提供攻击威力",
+    "type": "active"
+  },
+  {
+    "name": "连续加成",
+    "description": "连续命中累计+3攻击力",
+    "type": "active"
+  },
+  {
+    "name": "女士杀手",
+    "description": "对方是女性敌人时，攻击+2，命中+10",
+    "type": "passive"
+  },
+  {
+    "name": "黑寡妇",
+    "description": "对方是男性敌人时，攻击+2，命中+10",
+    "type": "passive"
+  },
+  {
+    "name": "造化弄人",
+    "description": "自己和附近2格内的敌人遭受必杀率+15%",
+    "type": "passive"
+  },
+  {
+    "name": "必杀",
+    "description": "提升30%必杀率",
+    "type": "passive"
+  },
+  {
+    "name": "太阳剑",
+    "description": "回复造成伤害的50%HP",
+    "type": "active"
+  },
+  {
+    "name": "月光剑",
+    "description": "无视对手防御",
+    "type": "active"
+  },
+  {
+    "name": "流星剑",
+    "description": "连续攻击5次，单次伤害减半",
+    "type": "active"
+  },
+  {
+    "name": "祈祷",
+    "description": "HP≤20%时，敌方命中率大幅下降",
+    "type": "passive"
+  },
+  {
+    "name": "见切",
+    "description": "免疫敌方必杀",
+    "type": "passive"
+  },
+  {
+    "name": "伏击",
+    "description": "敌方攻击时，优先反击",
+    "type": "passive"
+  },
+  {
+    "name": "怒",
+    "description": "HP≤50%时，必杀率提升30%",
+    "type": "passive"
+  },
+  {
+    "name": "潜行",
+    "description": "森林地形中回避率提升30%",
+    "type": "passive"
+  },
+  {
+    "name": "大盾",
+    "description": "一定概率完全防御物理攻击",
+    "type": "passive"
+  },
+  {
+    "name": "盗窃",
+    "description": "偷重量比自己体格小的物品",
+    "type": "active"
+  },
+  {
+    "name": "精英",
+    "description": "获得200%经验值",
+    "type": "passive"
+  },
+  {
+    "name": "活力",
+    "description": "每回合恢复5%~10%HP",
+    "type": "passive"
+  },
+  {
+    "name": "半价",
+    "description": "买东西可以半价",
+    "type": "active"
+  },
+  {
+    "name": "指挥",
+    "description": "三格内同伴角色命中、必杀、回避率各上升10%",
+    "type": "active"
+  },
+  {
+    "name": "舞蹈",
+    "description": "使邻边一人可再次行动",
+    "type": "active"
+  }
+]
