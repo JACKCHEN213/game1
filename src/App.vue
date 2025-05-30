@@ -1,43 +1,13 @@
-<script setup>
+<script lang="ts" setup>
+import Map from './components/Map.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.png" width="125" height="125" />
-
-    <div class="wrapper">
-    </div>
-  </header>
-
-  <main>
-  </main>
+  <Map map_url="src/assets/map/map1.png" :map_width="404" :map_height="386" :map_offset_x="1" :map_offset_y="0" />
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.wrapper {
+  position: relative;
 }
 </style>
