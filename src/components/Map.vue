@@ -2,70 +2,81 @@
 import Cursor from './Cursor.vue'
 import {ref, onUnmounted} from 'vue'
 
-let parentProps = defineProps({
-    map_url: {
+const parentProps = defineProps({
+    mapUrl: {
         type: String,
-        required: true,
+        required: true
     },
-    map_width: {
+    mapWidth: {
         type: Number,
-        required: true,
+        required: true
     },
-    map_height: {
+    mapHeight: {
         type: Number,
-        required: true,
+        required: true
     },
-    map_offset_x: {
+    mapOffsetX: {
         type: Number,
-        default: 0,
+        default: 0
     },
-    map_offset_y: {
+    mapOffsetY: {
         type: Number,
-        default: 0,
+        default: 0
     }
-});
+})
 
-let cursorX = ref(0);
-let cursorY = ref(0);
-let cursorSize = 16;
+const cursorX = ref(0)
+const cursorY = ref(0)
+const cursorSize = 16
 
-function setCursorPosition(ev) {
+function setCursorPosition(ev: KeyboardEvent) {
     if (ev.key === 'ArrowUp') {
-    cursorY.value -= cursorSize;
-    if (cursorY.value < 0) {
-      cursorY.value = 0;
+        cursorY.value -= cursorSize
+        if (cursorY.value < 0) {
+            cursorY.value = 0
+        }
+    } else if (ev.key === 'ArrowDown') {
+        cursorY.value += cursorSize
+        if (cursorY.value > parentProps.mapHeight - cursorSize) {
+            cursorY.value = parentProps.mapHeight - cursorSize
+        }
+    } else if (ev.key === 'ArrowLeft') {
+        cursorX.value -= cursorSize
+        if (cursorX.value < 0) {
+            cursorX.value = 0
+        }
+    } else if (ev.key === 'ArrowRight') {
+        cursorX.value += cursorSize
+        if (cursorX.value > parentProps.mapWidth - cursorSize) {
+            cursorX.value = parentProps.mapWidth - cursorSize
+        }
     }
-  } else if (ev.key === 'ArrowDown') {
-    cursorY.value += cursorSize;
-    if (cursorY.value > parentProps.map_height - cursorSize) {
-      cursorY.value = parentProps.map_height - cursorSize;
-    }
-  } else if (ev.key === 'ArrowLeft') {
-    cursorX.value -= cursorSize;
-    if (cursorX.value < 0) {
-      cursorX.value = 0;
-    }
-  } else if (ev.key === 'ArrowRight') {
-    cursorX.value += cursorSize;
-    if (cursorX.value > parentProps.map_width - cursorSize) {
-      cursorX.value = parentProps.map_width - cursorSize;
-    }
-  }
 }
 
-window.addEventListener('keyup', setCursorPosition);
+window.addEventListener('keyup', setCursorPosition)
 
 onUnmounted(() => {
-  window.removeEventListener('keyup', setCursorPosition);
-});
+    window.removeEventListener('keyup', setCursorPosition)
+})
 
 </script>
 
 <template>
   <div class="wrapper">
-    <img :src="map_url" alt="map" :width="map_width" :height="map_height">
+    <img
+      :src="mapUrl"
+      alt="map"
+      :width="mapWidth"
+      :height="mapHeight"
+    />
 
-    <Cursor :x=cursorX :y=cursorY :size="cursorSize" :offset_x="map_offset_x" :offset_y="map_offset_y" />
+    <Cursor
+      :x="cursorX"
+      :y="cursorY"
+      :size="cursorSize"
+      :offset_x="mapOffsetX"
+      :offset_y="mapOffsetY"
+    />
   </div>
 </template>
 

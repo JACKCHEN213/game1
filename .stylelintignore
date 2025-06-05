@@ -1,0 +1,11 @@
+# 忽略目录
+dist/
+node_modules/
+public/
+
+# 忽略压缩的 CSS
+**/*.min.css
+
+# 忽略第三方库
+**/vendor/
+**/third-party/

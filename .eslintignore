@@ -1,0 +1,12 @@
+# 忽略目录
+dist/
+node_modules/
+coverage/
+*.min.js
+
+# 忽略特定文件
+**/temp-*.js
+**/vendor/
+
+# 忽略 Vue 项目的编译产物
+**/*.runtime.js
