@@ -4,11 +4,11 @@ import Map from './components/Map.vue'
 
 <template>
   <Map
-    map_url="src/assets/map/map1.png"
-    :map_width="404"
-    :map_height="386"
-    :map_offset_x="1"
-    :map_offset_y="0"
+    map-url="src/assets/map/map1.png"
+    :map-width="404"
+    :map-height="386"
+    :map-offset-x="1"
+    :map-offset-y="0"
   />
 </template>
 

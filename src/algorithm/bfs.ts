@@ -167,3 +167,5 @@ class MovementSystem {
         return Math.abs(a.x - b.x) + Math.abs(a.y - b.y)
     }
 }
+
+new MovementSystem()
