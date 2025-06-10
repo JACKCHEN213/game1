@@ -27,3 +27,14 @@ yarn dev
 ```sh
 yarn build
 ```
+
+### Code Format
+
+```sh
+# eslint
+yarn lint
+# stylelint
+yarn lint:css
+# eslint + stylelint
+yarn lint:all
+```
