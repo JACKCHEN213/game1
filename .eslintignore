@@ -10,3 +10,14 @@ coverage/
 
 # 忽略 Vue 项目的编译产物
 **/*.runtime.js
+
+# 忽略后缀
+*.md
+*.svg
+*.woff
+*.ttf
+*.eot
+*.gif
+*.png
+*.ico
+*.log

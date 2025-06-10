@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Map from './components/Map.vue'
+  import Map from './components/Map.vue';
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import Map from './components/Map.vue'
 </template>
 
 <style scoped>
-.wrapper {
-  position: relative;
-}
+  .wrapper {
+    position: relative;
+  }
 </style>
