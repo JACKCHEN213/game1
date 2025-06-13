@@ -1,3 +1,6 @@
+import { SkillType } from '@/types/skill';
+import { ItemType } from '@/types/item';
+import { CharacterType } from '@/types/character';
 import { type ITile, TerrainType } from '@/types/tile';
 
 class BaseTile implements ITile {
@@ -10,6 +13,13 @@ class BaseTile implements ITile {
   accuracyBonus: number;
   healthPerRoundBonus: number;
   healthPerRoundCost: number;
+  forbiddenCharacterTypes: CharacterType[];
+  allowedCharacterTypes: CharacterType[];
+  accessExceptions: {
+    requiredSkill?: SkillType; // 需要技能
+    requiredItem?: ItemType; // 需要道具
+    overrideForbidden: boolean; // 是否覆盖基础禁止规则
+  }[];
 
   constructor(type: TerrainType, name: string, options?: Partial<ITile>) {
     this.type = type;
@@ -21,6 +31,9 @@ class BaseTile implements ITile {
     this.accuracyBonus = options?.accuracyBonus ?? 0;
     this.healthPerRoundBonus = options?.healthPerRoundBonus ?? 0;
     this.healthPerRoundCost = options?.healthPerRoundCost ?? 0;
+    this.forbiddenCharacterTypes = options?.forbiddenCharacterTypes ?? [];
+    this.allowedCharacterTypes = options?.allowedCharacterTypes ?? [];
+    this.accessExceptions = options?.accessExceptions ?? [];
   }
 }
 export default BaseTile;

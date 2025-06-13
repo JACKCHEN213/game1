@@ -46,7 +46,7 @@ enum CharacterType {
   Warrior = 'warrior', // 勇士
 }
 
-interface Character {
+interface ICharacter {
   id: number; // 角色ID
   type: CharacterType; // 角色类型
   name: string; // 角色名称
@@ -71,4 +71,4 @@ interface Character {
   items: ItemType[]; // 物品列表
 }
 
-export { CharacterType, type Character };
+export { CharacterType, type ICharacter };

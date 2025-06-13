@@ -14,6 +14,13 @@ class ForestTile extends BaseTile {
         CharacterType.Assassin,
         CharacterType.Wizard,
       ],
+      allowedCharacterTypes: [
+        CharacterType.Pirate,
+        CharacterType.PegasusKnight,
+        CharacterType.WyvernKnight,
+        CharacterType.DragonRider,
+        CharacterType.FalconKnight,
+      ],
       ...options, // 允许覆盖
     });
   }
