@@ -1,0 +1,17 @@
+{
+  "width": 240,
+  "height": 160,
+  "tiles": [
+    {
+      "x": 0,
+      "y": 0,
+      "terrain": "plain"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "terrain": "forest",
+      "movementCost": 2
+    }
+  ]
+}

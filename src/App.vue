@@ -4,9 +4,9 @@
 
 <template>
   <Map
-    map-url="src/assets/map/map1.png"
-    :map-width="404"
-    :map-height="386"
+    map-url="src/game/map/map01-240x160.png"
+    :map-width="240"
+    :map-height="160"
     :map-offset-x="1"
     :map-offset-y="0"
   />
@@ -15,5 +15,7 @@
 <style scoped>
   .wrapper {
     position: relative;
+    transform: scale(2, 2);
+    transform-origin: top left;
   }
 </style>
