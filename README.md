@@ -38,3 +38,10 @@ yarn lint:css
 # eslint + stylelint
 yarn lint:all
 ```
+
+### Version Control
+
+```sh
+# commit
+yarn cz
+```
