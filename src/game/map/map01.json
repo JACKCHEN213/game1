@@ -1,6 +1,9 @@
 {
   "width": 240,
   "height": 160,
+  "scale": 4,
+  "offset_x": 1,
+  "offset_y": 0,
   "tiles": [
     {
       "x": 0,

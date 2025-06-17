@@ -91,6 +91,7 @@ module.exports = {
       ],
       { severity: 'error' },
     ],
+    'declaration-property-value-no-unknown': null,
   },
   ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.tsx', '**/*.ts'],
 };

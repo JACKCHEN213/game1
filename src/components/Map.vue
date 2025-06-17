@@ -23,11 +23,15 @@
       type: Number,
       default: 0,
     },
+    mapScale: {
+      type: Number,
+      default: 1,
+    },
   });
 
   const cursorX = ref(0);
   const cursorY = ref(0);
-  const cursorSize = 16;
+  const cursorSize: number = parseInt(import.meta.env.VITE_GRID_SIZE);
   // 移动间隔时间(ms)
   const MOVE_INTERVAL: number = 100;
   // 存储当前按下的按键
@@ -107,36 +111,6 @@
       }
     }
   }
-
-  // function setCursorPosition(ev: KeyboardEvent) {
-  //     if (ev.key === 'ArrowUp') {
-  //         cursorY.value -= cursorSize
-  //         if (cursorY.value < 0) {
-  //             cursorY.value = 0
-  //         }
-  //     } else if (ev.key === 'ArrowDown') {
-  //         cursorY.value += cursorSize
-  //         if (cursorY.value > parentProps.mapHeight - cursorSize) {
-  //             cursorY.value = parentProps.mapHeight - cursorSize
-  //         }
-  //     } else if (ev.key === 'ArrowLeft') {
-  //         cursorX.value -= cursorSize
-  //         if (cursorX.value < 0) {
-  //             cursorX.value = 0
-  //         }
-  //     } else if (ev.key === 'ArrowRight') {
-  //         cursorX.value += cursorSize
-  //         if (cursorX.value > parentProps.mapWidth - cursorSize) {
-  //             cursorX.value = parentProps.mapWidth - cursorSize
-  //         }
-  //     }
-  // }
-
-  // window.addEventListener('keyup', setCursorPosition)
-
-  // onUnmounted(() => {
-  //     window.removeEventListener('keyup', setCursorPosition)
-  // })
 </script>
 
 <template>
@@ -156,5 +130,7 @@
 <style scoped>
   .wrapper {
     position: relative;
+    transform: scale(v-bind('parentProps.mapScale'));
+    transform-origin: top left;
   }
 </style>
