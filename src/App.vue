@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import Map from './components/Map.vue';
-  import map01 from './game/map/map01.json';
+  import map01 from './game/map/map01';
 </script>
 
 <template>

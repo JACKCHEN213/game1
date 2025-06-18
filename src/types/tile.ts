@@ -7,6 +7,8 @@ enum TerrainType {
   Forest = 'forest',
   Mountain = 'mountain',
   Water = 'water',
+  Cliff = 'cliff',
+  Peak = 'peak',
 }
 
 interface ITile {
