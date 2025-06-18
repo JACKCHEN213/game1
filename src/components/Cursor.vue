@@ -20,6 +20,10 @@
       type: Number,
       default: 0,
     },
+    scale: {
+      type: Number,
+      default: 1,
+    },
   });
 </script>
 
@@ -31,6 +35,7 @@
       top: y + offsetY + 'px',
       width: size + 'px',
       height: size + 'px',
+      border: scale + 'px solid red',
     }"
   />
 </template>
@@ -38,6 +43,5 @@
 <style scoped>
   #cursor {
     position: absolute;
-    border: 1px solid red;
   }
 </style>

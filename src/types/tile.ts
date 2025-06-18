@@ -9,6 +9,7 @@ enum TerrainType {
   Water = 'water',
   Cliff = 'cliff',
   Peak = 'peak',
+  Architecture = 'architecture',
 }
 
 interface ITile {
