@@ -1,5 +1,7 @@
 import { onMounted, onUnmounted, type Ref } from 'vue';
 
+const VITE_ENABLE_MOUSE: boolean = parseInt(import.meta.env.VITE_ENABLE_MOUSE) === 1;
+
 export function useMouseGridMovement(
   cursorX: Ref<number>,
   cursorY: Ref<number>,
@@ -67,16 +69,18 @@ export function useMouseGridMovement(
   };
 
   // 监听器设置和清理...
-  onMounted(() => {
-    if (options.elementRef.value) {
-      options.elementRef.value.addEventListener('mousemove', handleMouseMove);
-    }
-  });
+  if (VITE_ENABLE_MOUSE) {
+    onMounted(() => {
+      if (options.elementRef.value) {
+        options.elementRef.value.addEventListener('mousemove', handleMouseMove);
+      }
+    });
 
-  onUnmounted(() => {
-    if (options.elementRef.value) {
-      options.elementRef.value.removeEventListener('mousemove', handleMouseMove);
-    }
-    if (moveTimer) clearInterval(moveTimer);
-  });
+    onUnmounted(() => {
+      if (options.elementRef.value) {
+        options.elementRef.value.removeEventListener('mousemove', handleMouseMove);
+      }
+      if (moveTimer) clearInterval(moveTimer);
+    });
+  }
 }

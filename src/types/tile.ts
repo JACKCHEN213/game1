@@ -6,10 +6,13 @@ enum TerrainType {
   Plain = 'plain',
   Forest = 'forest',
   Mountain = 'mountain',
-  Water = 'water',
   Cliff = 'cliff',
   Peak = 'peak',
   Architecture = 'architecture',
+  Stronghold = 'stronghold',
+  River = 'river',
+  Sea = 'sea',
+  House = 'house',
 }
 
 interface ITile {
