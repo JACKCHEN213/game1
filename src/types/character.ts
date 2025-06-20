@@ -52,15 +52,20 @@ interface ICharacter {
   name: string; // 角色名称
   level: number; // 角色等级
   experience: number; // 角色经验
-  stats: {
-    // 角色属性
-    hp: number; // 生命值
-    atk: number; // 攻击力
-    def: number; // 防御力
-    spd: number; // 速度
-    // 其他属性...
-  };
+
+  // 角色属性
+  health: number; // 生命值
+  strength: number; // 力量
+  magic: number; // 魔力
+  speed: number; // 速度
+  technology: number; // 技术
+  defense: number; // 防御力
+  magic_defense: number; // 魔防
+  luck: number; // 幸运
+  physique: number; // 体格
   movementRange: number; // 移动范围
+
+  // 角色修正
   movementCostModifiers: {
     // 地形移动成本修正
     terrain: TerrainType; // 地形类型

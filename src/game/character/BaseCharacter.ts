@@ -3,48 +3,26 @@ import { SkillType } from '@/types/skill';
 import { ItemType } from '@/types/item';
 
 class BaseCharacter implements ICharacter {
-  id: number;
-  type: CharacterType;
-  name: string;
-  experience: number;
-  stats: {
-    hp: number;
-    atk: number;
-    def: number;
-    spd: number;
-  };
-  movementRange: number;
-  movementCostModifiers: { terrain: TerrainType; additive?: number }[];
-  skills: SkillType[];
-  items: ItemType[];
+  id: number = 0;
+  type: CharacterType = CharacterType.Lord;
+  name: string = '';
+  level: number = 1;
+  experience: number = 0;
 
-  private _level: number = 1;
+  health: number = 0;
+  strength: number = 0;
+  magic: number = 0;
+  speed: number = 0;
+  technology: number = 0;
+  defense: number = 0;
+  magic_defense: number = 0;
+  luck: number = 0;
+  physique: number = 0;
+  movementRange: number = 1;
 
-  get level(): number {
-    return this._level;
-  }
-
-  set level(value: number) {
-    this._level = Math.max(1, Math.min(20, value)); // 强制限制在1-20
-  }
-
-  constructor(id: number, name: string, type: CharacterType, options?: Partial<ICharacter>) {
-    this.id = id;
-    this.name = name;
-    this.type = type;
-    this.level = options?.level ?? 1;
-    this.experience = options?.experience ?? 0;
-    this.stats = options?.stats ?? {
-      hp: 100,
-      atk: 10,
-      def: 10,
-      spd: 10,
-    };
-    this.movementRange = options?.movementRange ?? 1;
-    this.movementCostModifiers = options?.movementCostModifiers ?? [];
-    this.skills = options?.skills ?? [];
-    this.items = options?.items ?? [];
-  }
+  movementCostModifiers: { terrain: TerrainType; additive?: number }[] = [];
+  skills: SkillType[] = [];
+  items: ItemType[] = [];
 }
 
 export default BaseCharacter;
