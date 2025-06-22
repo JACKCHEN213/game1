@@ -53,6 +53,8 @@ interface ICharacter {
   level: number; // 角色等级
   experience: number; // 角色经验
 
+  attack_point: number; // 攻击点
+
   // 角色属性
   health: number; // 生命值
   strength: number; // 力量
