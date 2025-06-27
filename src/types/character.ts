@@ -1,5 +1,4 @@
 import { SkillType } from './skill';
-import { ItemType } from './item';
 
 enum CharacterType {
   // 基础职业
@@ -46,26 +45,32 @@ enum CharacterType {
   Warrior = 'warrior', // 勇士
 }
 
-interface ICharacter {
-  id: number; // 角色ID
-  type: CharacterType; // 角色类型
-  name: string; // 角色名称
-  level: number; // 角色等级
-  experience: number; // 角色经验
-
-  attack_point: number; // 攻击点
-
-  // 角色属性
+interface IStat {
   health: number; // 生命值
   strength: number; // 力量
   magic: number; // 魔力
   speed: number; // 速度
   technology: number; // 技术
   defense: number; // 防御力
-  magic_defense: number; // 魔防
+  magicDefense: number; // 魔防
   luck: number; // 幸运
   physique: number; // 体格
   movementRange: number; // 移动范围
+}
+
+interface ICharacter {
+  id: string; // 角色ID
+  type: CharacterType; // 角色类型
+  name: string; // 角色名称
+  level: number; // 角色等级
+  experience: number; // 角色经验
+
+  attackPoint: number; // 攻击点
+
+  baseStats: IStat; // 基础属性
+
+  maxStats: IStat; // 最大属性
+  growthRates: IStat; // 成长属性
 
   // 角色修正
   movementCostModifiers: {
@@ -75,7 +80,6 @@ interface ICharacter {
   }[];
   // 其他角色属性...
   skills: SkillType[]; // 技能列表
-  items: ItemType[]; // 物品列表
 }
 
-export { CharacterType, type ICharacter };
+export { CharacterType, type ICharacter, type IStat };
