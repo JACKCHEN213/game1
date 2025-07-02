@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import Cursor from './Cursor.vue';
+  import Human from './Human.vue';
   import { ref } from 'vue';
   import { useGridMovement } from '@/hooks/useGridMovement';
 
@@ -50,6 +51,8 @@
       :width="mapWidth * parentProps.mapScale"
       :height="mapHeight * parentProps.mapScale"
     />
+
+    <Human />
 
     <Cursor
       :x="cursorX"

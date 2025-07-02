@@ -5,7 +5,7 @@
 
 <template>
   <Map
-    map-url="src/game/map/map01-240x160.png"
+    :map-url="map01.url"
     :map-width="map01.width"
     :map-height="map01.height"
     :map-offset-x="map01.offset_x"

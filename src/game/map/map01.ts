@@ -1,5 +1,6 @@
 import { TerrainType } from '@/types/tile';
 export default {
+  url: 'src/game/map/map01-240x160.png',
   width: 240,
   height: 160,
   scale: 4,
