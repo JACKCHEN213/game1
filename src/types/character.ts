@@ -58,6 +58,11 @@ interface IStat {
   movementRange: number; // 移动范围
 }
 
+interface spritePosition {
+  x: number;
+  y: number;
+}
+
 interface ICharacter {
   id: string; // 角色ID
   type: CharacterType; // 角色类型
@@ -73,6 +78,17 @@ interface ICharacter {
   growthRates: IStat; // 成长属性
 
   characterImageUrl: string; // 角色形象
+  spriteDefine: {
+    // 移动动画
+    move: {
+      up: spritePosition[];
+      down: spritePosition[];
+      left: spritePosition[];
+      right: spritePosition[];
+      stand: spritePosition[];
+    };
+    attack: object;
+  };
   characterPortraitUrl: string; // 角色立绘
 
   // 角色修正
@@ -85,4 +101,4 @@ interface ICharacter {
   skills: SkillType[]; // 技能列表
 }
 
-export { CharacterType, type ICharacter, type IStat };
+export { CharacterType, type ICharacter, type IStat, type spritePosition };

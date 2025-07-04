@@ -1,4 +1,4 @@
-import { CharacterType, type ICharacter } from '@/types/character';
+import { CharacterType, type ICharacter, type spritePosition } from '@/types/character';
 import { SkillType } from '@/types/skill';
 import { generateId } from '@/utils';
 
@@ -85,6 +85,25 @@ class BaseCharacter implements ICharacter {
 
   characterImageUrl: string = '';
   characterPortraitUrl: string = '';
+  spriteDefine: {
+    move: {
+      up: spritePosition[];
+      down: spritePosition[];
+      left: spritePosition[];
+      right: spritePosition[];
+      stand: spritePosition[];
+    };
+    attack: object;
+  } = {
+    move: {
+      up: [],
+      down: [],
+      left: [],
+      right: [],
+      stand: [],
+    },
+    attack: {},
+  };
 
   movementCostModifiers: { terrain: TerrainType; additive?: number }[] = [];
   skills: SkillType[] = [];
@@ -126,6 +145,16 @@ class BaseCharacter implements ICharacter {
 
     this.characterImageUrl = options?.characterImageUrl ?? '';
     this.characterPortraitUrl = options?.characterPortraitUrl ?? '';
+    this.spriteDefine = options?.spriteDefine ?? {
+      move: {
+        up: [],
+        down: [],
+        left: [],
+        right: [],
+        stand: [],
+      },
+      attack: {},
+    };
 
     this.movementCostModifiers = options?.movementCostModifiers ?? [];
     this.skills = options?.skills ?? [];
