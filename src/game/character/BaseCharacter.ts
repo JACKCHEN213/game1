@@ -83,17 +83,20 @@ class BaseCharacter implements ICharacter {
     movementRange: 0,
   };
 
+  characterImageUrl: string = '';
+  characterPortraitUrl: string = '';
+
   movementCostModifiers: { terrain: TerrainType; additive?: number }[] = [];
   skills: SkillType[] = [];
 
-  constructor(options: Partial<ICharacter>) {
-    this.id = options.id ?? generateId();
-    this.type = options.type ?? CharacterType.Lord;
-    this.name = options.name ?? '';
-    this.level = options.level ?? 1;
-    this.experience = options.experience ?? 0;
+  constructor(options?: Partial<ICharacter>) {
+    this.id = options?.id ?? generateId();
+    this.type = options?.type ?? CharacterType.Lord;
+    this.name = options?.name ?? '';
+    this.level = options?.level ?? 1;
+    this.experience = options?.experience ?? 0;
 
-    this.attackPoint = options.attackPoint ?? 0;
+    this.attackPoint = options?.attackPoint ?? 0;
 
     this.baseStats = {
       health: options?.baseStats?.health ?? 70,
@@ -121,8 +124,11 @@ class BaseCharacter implements ICharacter {
       movementRange: options?.maxStats?.movementRange ?? 1,
     };
 
-    this.movementCostModifiers = options.movementCostModifiers ?? [];
-    this.skills = options.skills ?? [];
+    this.characterImageUrl = options?.characterImageUrl ?? '';
+    this.characterPortraitUrl = options?.characterPortraitUrl ?? '';
+
+    this.movementCostModifiers = options?.movementCostModifiers ?? [];
+    this.skills = options?.skills ?? [];
   }
 }
 

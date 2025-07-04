@@ -72,6 +72,9 @@ interface ICharacter {
   maxStats: IStat; // 最大属性
   growthRates: IStat; // 成长属性
 
+  characterImageUrl: string; // 角色形象
+  characterPortraitUrl: string; // 角色立绘
+
   // 角色修正
   movementCostModifiers: {
     // 地形移动成本修正
