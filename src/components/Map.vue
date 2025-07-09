@@ -4,7 +4,7 @@
   import { ref } from 'vue';
   import { useGridMovement } from '@/hooks/useGridMovement';
 
-  const parentProps = defineProps({
+  const { mapUrl, mapWidth, mapHeight, mapOffsetX, mapOffsetY, mapScale } = defineProps({
     mapUrl: {
       type: String,
       required: true,
@@ -33,26 +33,21 @@
 
   const cursorX = ref(0);
   const cursorY = ref(0);
+  const characterMove = ref<'stand' | 'up' | 'down' | 'left' | 'right'>('stand');
+  const characterPositionIndex = ref(0);
   const gridElement = ref<HTMLElement | null>(null);
-  const cursorSize: number = parseInt(import.meta.env.VITE_GRID_SIZE) * parentProps.mapScale;
+  const cursorSize: number = parseInt(import.meta.env.VITE_GRID_SIZE) * mapScale;
   useGridMovement(cursorX, cursorY, {
     step: cursorSize,
-    mapWidth: parentProps.mapWidth * parentProps.mapScale,
-    mapHeight: parentProps.mapHeight * parentProps.mapScale,
+    mapWidth: mapWidth * mapScale,
+    mapHeight: mapHeight * mapScale,
     elementRef: gridElement,
   });
 </script>
 
 <template>
   <div ref="gridElement" class="wrapper">
-    <img
-      :src="mapUrl"
-      alt="map"
-      :width="mapWidth * parentProps.mapScale"
-      :height="mapHeight * parentProps.mapScale"
-    />
-
-    <Human />
+    <img :src="mapUrl" alt="map" :width="mapWidth * mapScale" :height="mapHeight * mapScale" />
 
     <Cursor
       :x="cursorX"
@@ -60,16 +55,35 @@
       :size="cursorSize"
       :offset_x="mapOffsetX"
       :offset_y="mapOffsetY"
-      :scale="parentProps.mapScale"
+      :scale="mapScale"
     />
+
+    <Human :characterMove="characterMove" :characterPositionIndex="characterPositionIndex" />
+  </div>
+  <div>
+    <select v-model="characterMove" name="switchMove">
+      <option value="stand">站立</option>
+      <option value="up">上</option>
+      <option value="down">下</option>
+      <option value="left">左</option>
+      <option value="right">右</option>
+    </select>
+    <select v-model.number="characterPositionIndex" name="switchPositionIndex">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
   </div>
 </template>
 
 <style scoped>
   .wrapper {
     position: relative;
-
-    /* transform: scale(v-bind('parentProps.mapScale')); */
     transform-origin: top left;
+  }
+
+  select:not(:last-child) {
+    margin-right: 10px;
+    font-size: 12px;
   }
 </style>

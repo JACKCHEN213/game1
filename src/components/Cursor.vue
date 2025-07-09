@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  defineProps({
+  const { x, y, size, offsetX, offsetY, scale } = defineProps({
     x: {
       type: Number,
       required: true,

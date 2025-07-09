@@ -45,6 +45,19 @@ enum CharacterType {
   Warrior = 'warrior', // 勇士
 }
 
+interface IMove {
+  up: spritePosition[];
+  down: spritePosition[];
+  left: spritePosition[];
+  right: spritePosition[];
+  stand: spritePosition[];
+  size: {
+    width: number;
+    height: number;
+    scale: number;
+  };
+}
+
 interface IStat {
   health: number; // 生命值
   strength: number; // 力量
@@ -80,13 +93,7 @@ interface ICharacter {
   characterImageUrl: string; // 角色形象
   spriteDefine: {
     // 移动动画
-    move: {
-      up: spritePosition[];
-      down: spritePosition[];
-      left: spritePosition[];
-      right: spritePosition[];
-      stand: spritePosition[];
-    };
+    move: IMove;
     attack: object;
   };
   characterPortraitUrl: string; // 角色立绘
