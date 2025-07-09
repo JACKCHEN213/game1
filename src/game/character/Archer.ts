@@ -6,8 +6,8 @@ class Archer extends BaseCharacter {
     super({
       type: CharacterType.Archer,
       name: '弓箭手',
-      characterImageUrl: 'src/game/entities/archer/Archer-move-1.png',
-      characterPortraitUrl: '@/game/entities/archer/a008.gif',
+      characterImageUrl: 'entities/archer/Archer-move-1.png',
+      characterPortraitUrl: 'entities/archer/a008.gif',
       spriteDefine: {
         move: {
           up: [
