@@ -7,8 +7,8 @@ class Archer extends BaseCharacter {
     super({
       type: CharacterType.Archer,
       name: $t('character.archer'),
-      characterImageUrl: 'entities/archer/Archer-move-1.png',
-      characterPortraitUrl: 'entities/archer/a008.gif',
+      characterImageUrl: 'res/entities/archer/Archer-move-1.png',
+      characterPortraitUrl: 'res/entities/archer/a008.gif',
       spriteDefine: {
         move: {
           up: [

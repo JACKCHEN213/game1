@@ -1,6 +1,6 @@
 import { TerrainType } from '@/types/tile';
 export default {
-  url: 'map/map01-240x160.png',
+  url: 'res/map/map01-240x160.png',
   width: 240,
   height: 160,
   offset_x: 0,
