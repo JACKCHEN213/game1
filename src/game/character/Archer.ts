@@ -1,11 +1,12 @@
 import { type ICharacter, CharacterType } from '@/types/character';
 import BaseCharacter from './BaseCharacter';
+import $t from '@/utils/i18n';
 
 class Archer extends BaseCharacter {
   constructor(options?: Partial<ICharacter>) {
     super({
       type: CharacterType.Archer,
-      name: '弓箭手',
+      name: $t('character.archer'),
       characterImageUrl: 'entities/archer/Archer-move-1.png',
       characterPortraitUrl: 'entities/archer/a008.gif',
       spriteDefine: {

@@ -630,6 +630,27 @@
   resolved "https://registry.npmmirror.com/@hutson/parse-repository-url/-/parse-repository-url-5.0.0.tgz#bf344cc75136039bc41bcf5d1ddbcb40405fca3b"
   integrity sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==
 
+"@intlify/core-base@11.1.9":
+  version "11.1.9"
+  resolved "https://repo.huaweicloud.com/repository/npm/@intlify/core-base/-/core-base-11.1.9.tgz#54201e7985d52240627b9c327a4d57c08a96cd39"
+  integrity sha512-Lrdi4wp3XnGhWmB/mMD/XtfGUw1Jt+PGpZI/M63X1ZqhTDjNHRVCs/i8vv8U1cwaj1A9fb0bkCQHLSL0SK+pIQ==
+  dependencies:
+    "@intlify/message-compiler" "11.1.9"
+    "@intlify/shared" "11.1.9"
+
+"@intlify/message-compiler@11.1.9":
+  version "11.1.9"
+  resolved "https://repo.huaweicloud.com/repository/npm/@intlify/message-compiler/-/message-compiler-11.1.9.tgz#c84a3a2777b0d95342348d1bf95669329d71e10c"
+  integrity sha512-84SNs3Ikjg0rD1bOuchzb3iK1vR2/8nxrkyccIl5DjFTeMzE/Fxv6X+A7RN5ZXjEWelc1p5D4kHA6HEOhlKL5Q==
+  dependencies:
+    "@intlify/shared" "11.1.9"
+    source-map-js "^1.0.2"
+
+"@intlify/shared@11.1.9":
+  version "11.1.9"
+  resolved "https://repo.huaweicloud.com/repository/npm/@intlify/shared/-/shared-11.1.9.tgz#20244e53322ba01233df7ddb6dc677561b3c7e0b"
+  integrity sha512-H/83xgU1l8ox+qG305p6ucmoy93qyjIPnvxGWRA7YdOoHe1tIiW9IlEu4lTdsOR7cfP1ecrwyflQSqXdXBacXA==
+
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.8"
   resolved "https://repo.huaweicloud.com/repository/npm/@jridgewell/gen-mapping/-/gen-mapping-0.3.8.tgz#4f0e06362e01362f823d348f1872b08f666d8142"
@@ -1115,7 +1136,7 @@
     de-indent "^1.0.2"
     he "^1.2.0"
 
-"@vue/devtools-api@^6.6.3", "@vue/devtools-api@^6.6.4":
+"@vue/devtools-api@^6.5.0", "@vue/devtools-api@^6.6.3", "@vue/devtools-api@^6.6.4":
   version "6.6.4"
   resolved "https://repo.huaweicloud.com/repository/npm/@vue/devtools-api/-/devtools-api-6.6.4.tgz#cbe97fe0162b365edc1dba80e173f90492535343"
   integrity sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==
@@ -5274,7 +5295,7 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-source-map-js@^1.0.1, source-map-js@^1.2.1:
+source-map-js@^1.0.1, source-map-js@^1.0.2, source-map-js@^1.2.1:
   version "1.2.1"
   resolved "https://repo.huaweicloud.com/repository/npm/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
   integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
@@ -6170,6 +6191,15 @@ vue-eslint-parser@^9.3.1, vue-eslint-parser@^9.4.3:
     esquery "^1.4.0"
     lodash "^4.17.21"
     semver "^7.3.6"
+
+vue-i18n@^11.1.9:
+  version "11.1.9"
+  resolved "https://repo.huaweicloud.com/repository/npm/vue-i18n/-/vue-i18n-11.1.9.tgz#214816d3a5461a3169ee1eb507cac045a03a15d8"
+  integrity sha512-N9ZTsXdRmX38AwS9F6Rh93RtPkvZTkSy/zNv63FTIwZCUbLwwrpqlKz9YQuzFLdlvRdZTnWAUE5jMxr8exdl7g==
+  dependencies:
+    "@intlify/core-base" "11.1.9"
+    "@intlify/shared" "11.1.9"
+    "@vue/devtools-api" "^6.5.0"
 
 vue-router@^4.3.0:
   version "4.5.1"
