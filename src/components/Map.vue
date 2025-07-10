@@ -4,7 +4,7 @@
   import { ref } from 'vue';
   import { useGridMovement } from '@/hooks/useGridMovement';
 
-  const { mapUrl, mapWidth, mapHeight, mapOffsetX, mapOffsetY, mapScale } = defineProps({
+  const { mapUrl, mapWidth, mapHeight, mapOffsetX, mapOffsetY } = defineProps({
     mapUrl: {
       type: String,
       required: true,
@@ -25,10 +25,6 @@
       type: Number,
       default: 0,
     },
-    mapScale: {
-      type: Number,
-      default: 1,
-    },
   });
 
   const cursorX = ref(0);
@@ -36,18 +32,18 @@
   const characterMove = ref<'stand' | 'up' | 'down' | 'left' | 'right'>('stand');
   const characterPositionIndex = ref(0);
   const gridElement = ref<HTMLElement | null>(null);
-  const cursorSize: number = parseInt(import.meta.env.VITE_GRID_SIZE) * mapScale;
+  const cursorSize: number = parseInt(import.meta.env.VITE_GRID_SIZE);
   useGridMovement(cursorX, cursorY, {
     step: cursorSize,
-    mapWidth: mapWidth * mapScale,
-    mapHeight: mapHeight * mapScale,
+    mapWidth: mapWidth,
+    mapHeight: mapHeight,
     elementRef: gridElement,
   });
 </script>
 
 <template>
   <div ref="gridElement" class="wrapper">
-    <img :src="mapUrl" alt="map" :width="mapWidth * mapScale" :height="mapHeight * mapScale" />
+    <img :src="mapUrl" alt="map" :width="mapWidth" :height="mapHeight" />
 
     <Cursor
       :x="cursorX"
@@ -55,7 +51,6 @@
       :size="cursorSize"
       :offset_x="mapOffsetX"
       :offset_y="mapOffsetY"
-      :scale="mapScale"
     />
 
     <Human :characterMove="characterMove" :characterPositionIndex="characterPositionIndex" />

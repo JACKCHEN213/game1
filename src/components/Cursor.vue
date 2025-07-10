@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  const { x, y, size, offsetX, offsetY, scale } = defineProps({
+  const { x, y, size, offsetX, offsetY } = defineProps({
     x: {
       type: Number,
       required: true,
@@ -20,10 +20,6 @@
       type: Number,
       default: 0,
     },
-    scale: {
-      type: Number,
-      default: 1,
-    },
   });
 </script>
 
@@ -35,7 +31,7 @@
       top: y + offsetY + 'px',
       width: size + 'px',
       height: size + 'px',
-      border: scale + 'px solid red',
+      border: '1px solid red',
     }"
   />
 </template>

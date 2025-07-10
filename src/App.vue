@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import Map from './components/Map.vue';
   import map01 from './game/map/map01';
+  console.log(map01);
 </script>
 
 <template>
@@ -10,7 +11,6 @@
     :map-height="map01.height"
     :map-offset-x="map01.offset_x"
     :map-offset-y="map01.offset_y"
-    :map-scale="map01.scale"
   />
 </template>
 

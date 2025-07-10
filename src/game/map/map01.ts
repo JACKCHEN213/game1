@@ -3,7 +3,6 @@ export default {
   url: 'map/map01-240x160.png',
   width: 240,
   height: 160,
-  scale: 1,
   offset_x: 0,
   offset_y: 0,
   tiles: [
