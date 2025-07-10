@@ -53,6 +53,23 @@ function generateGenericEnemy(
       },
       movementCostModifiers: [],
       skills: [],
+      characterImageUrl: '',
+      spriteDefine: {
+        move: {
+          up: [],
+          down: [],
+          left: [],
+          right: [],
+          stand: [],
+          size: {
+            width: 0,
+            height: 0,
+            scale: 0,
+          },
+        },
+        attack: {},
+      },
+      characterPortraitUrl: '',
     },
 
     temporaryModifiers: [],

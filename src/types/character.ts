@@ -108,4 +108,4 @@ interface ICharacter {
   skills: SkillType[]; // 技能列表
 }
 
-export { CharacterType, type ICharacter, type IStat, type spritePosition };
+export { CharacterType, type ICharacter, type IStat, type spritePosition, type IMove };
