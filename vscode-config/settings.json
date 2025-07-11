@@ -17,5 +17,7 @@
     "*.vue": "vue"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "prettier.documentSelectors": ["**/*.vue"]
+  "prettier.documentSelectors": ["**/*.vue"],
+  "files.participants.timeout": 0,
+  "cSpell.words": ["VITE"]
 }

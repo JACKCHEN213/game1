@@ -3,6 +3,7 @@
   import Human from './Human.vue';
   import { ref } from 'vue';
   import { useGridMovement } from '@/hooks/useGridMovement';
+  import RouteGrid from './RouteGrid.vue';
 
   const { mapUrl, mapWidth, mapHeight, mapOffsetX, mapOffsetY } = defineProps({
     mapUrl: {
@@ -44,6 +45,17 @@
 <template>
   <div ref="gridElement" class="wrapper">
     <img :src="mapUrl" alt="map" :width="mapWidth" :height="mapHeight" />
+
+    <RouteGrid />
+    <RouteGrid :top="16" />
+    <RouteGrid :top="32" />
+    <RouteGrid :top="48" />
+    <RouteGrid :top="64" />
+    <RouteGrid :left="16" />
+    <RouteGrid :top="16" :left="16" />
+    <RouteGrid :top="32" :left="16" />
+    <RouteGrid :top="48" :left="16" />
+    <RouteGrid :top="32" :left="32" />
 
     <Cursor
       :x="cursorX"

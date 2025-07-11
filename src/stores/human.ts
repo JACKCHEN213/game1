@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia';
 
 // 定义并暴露一个store
-export const useHumanStore = defineStore('count', {
+export const useHumanStore = defineStore('human', {
   // 动作
   actions: {},
   // 状态
