@@ -8,7 +8,7 @@ export const useHumanStore = defineStore('human', {
   // 状态
   state() {
     return {
-      select_human_flag: false,
+      select_human_flag: true,
     };
   },
   // 计算
