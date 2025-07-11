@@ -9,7 +9,7 @@
     "dev:server": "nodemon --watch server --exec node --loader ts-node/esm --experimental-specifier-resolution=node server/index.ts",
     "build": "yarn build:client && yarn build:server",
     "build:client": "vite build",
-    "build:server": "tsc -p tsconfig.node.json",
+    "build:server": "tsc -p tsconfig.server.json",
     "preview": "vite preview",
     "start": "node dist/server/index.js",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
