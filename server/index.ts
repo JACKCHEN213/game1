@@ -1,4 +1,5 @@
 import Koa from 'koa';
+import dotenv from 'dotenv';
 import { type Context } from 'koa';
 import bodyParser from 'koa-bodyparser';
 import koaViews from 'koa-views';
@@ -11,6 +12,8 @@ import userRouter from './routes/user.route';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+dotenv.config();
 
 const app = new Koa();
 const router = new Router({ prefix: '/api' });
@@ -26,7 +29,8 @@ app.use(
 
 // 示例路由
 router.get('/test', (ctx: Context) => {
-  ctx.body = 'Hello from Koa!!!!<img src="res/entities/archer/a008.gif">';
+  ctx.type = 'html';
+  ctx.body = `<h3>Hello from Koa!!!!<img src="http://${process.env.VITE_DEV_SERVER_HOST}:${process.env.VITE_DEV_SERVER_PORT}/res/entities/archer/a008.gif"></h3>`;
 });
 
 router.get('/list', async (ctx) => {
@@ -42,9 +46,11 @@ router.use('/users', userRouter.routes(), userRouter.allowedMethods());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+const PORT = (process.env.VITE_API_SERVER_PORT || 3000) as number;
+const HOST = (process.env.VITE_API_SERVER_HOST || 'localhost') as string;
+
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`);
 });
 
 export default app;

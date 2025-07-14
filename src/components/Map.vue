@@ -5,7 +5,7 @@
   import { useGridMovement } from '@/hooks/useGridMovement';
   import { useHumanStore } from '@/stores/human';
   import MoveGrid from './MoveGrid.vue';
-  import { GridColor } from '@/types/GRID';
+  import { GridColor } from '@/types/grid';
 
   const { mapUrl, mapWidth, mapHeight, mapOffsetX, mapOffsetY } = defineProps({
     mapUrl: {
