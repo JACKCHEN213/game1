@@ -2,13 +2,16 @@
 import { defineStore } from 'pinia';
 
 // 定义并暴露一个store
-export const useHumanStore = defineStore('human', {
+export const useCharacterStore = defineStore('character', {
   // 动作
   actions: {},
   // 状态
   state() {
     return {
-      select_human_flag: true,
+      select_flag: false,
+      current_character_id: '',
+      move_grid_range_list: [] as any[],
+      attack_grid_range_list: [] as any[],
     };
   },
   // 计算

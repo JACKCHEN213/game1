@@ -25,7 +25,7 @@
   });
 
   const routeElement = ref();
-  const cursorSize: number = parseInt(import.meta.env.VITE_GRID_SIZE);
+  const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
 
   onMounted(() => {
     routeElement.value.style['background-color'] = color;
@@ -41,8 +41,8 @@
     ref="routeElement"
     class="route"
     :style="{
-      width: cursorSize - 1 + 'px',
-      height: cursorSize - 1 + 'px',
+      width: GRID_SIZE - 1 + 'px',
+      height: GRID_SIZE - 1 + 'px',
     }"
   />
 </template>

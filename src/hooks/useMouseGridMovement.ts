@@ -1,4 +1,6 @@
 import { onMounted, onUnmounted, type Ref } from 'vue';
+import { useRelativePosition } from '@/hooks/useRelativePosition';
+const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
 
 const VITE_ENABLE_MOUSE: boolean = parseInt(import.meta.env.VITE_ENABLE_MOUSE) === 1;
 
@@ -6,7 +8,6 @@ export function useMouseGridMovement(
   cursorX: Ref<number>,
   cursorY: Ref<number>,
   options: {
-    step: number;
     mapWidth: number;
     mapHeight: number;
     elementRef: Ref<HTMLElement | null>;
@@ -16,31 +17,6 @@ export function useMouseGridMovement(
   let moveTimer: number | null = null;
   let targetX = cursorX.value;
   let targetY = cursorY.value;
-
-  const snapToGrid = (value: number) => {
-    return Math.floor(value / options.step) * options.step;
-  };
-
-  const setTargetPosition = (clientX: number, clientY: number) => {
-    if (!options.elementRef.value) return;
-
-    const rect = options.elementRef.value.getBoundingClientRect();
-
-    // 考虑缩放因子计算相对位置
-    const relativeX = clientX - rect.left;
-    const relativeY = clientY - rect.top;
-
-    targetX = snapToGrid(relativeX);
-    targetY = snapToGrid(relativeY);
-
-    // 边界检查（使用原始尺寸，因为坐标已经过缩放调整）
-    targetX = Math.max(0, Math.min(targetX, options.mapWidth - options.step));
-    targetY = Math.max(0, Math.min(targetY, options.mapHeight - options.step));
-
-    if (!moveTimer) {
-      moveTimer = window.setInterval(moveTowardsTarget, moveInterval);
-    }
-  };
 
   const moveTowardsTarget = () => {
     const dx = targetX - cursorX.value;
@@ -55,17 +31,29 @@ export function useMouseGridMovement(
     }
 
     if (dx !== 0) {
-      cursorX.value += Math.sign(dx) * options.step;
-      if (Math.abs(dx) < options.step) cursorX.value = targetX;
+      cursorX.value += Math.sign(dx) * GRID_SIZE;
+      if (Math.abs(dx) < GRID_SIZE) cursorX.value = targetX;
     }
     if (dy !== 0) {
-      cursorY.value += Math.sign(dy) * options.step;
-      if (Math.abs(dy) < options.step) cursorY.value = targetY;
+      cursorY.value += Math.sign(dy) * GRID_SIZE;
+      if (Math.abs(dy) < GRID_SIZE) cursorY.value = targetY;
     }
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    setTargetPosition(e.clientX, e.clientY);
+    if (!options.elementRef.value) return;
+    const relativePosition = useRelativePosition(
+      e.clientX,
+      e.clientY,
+      options.elementRef.value.getBoundingClientRect(),
+      GRID_SIZE,
+    );
+    targetX = relativePosition.x;
+    targetY = relativePosition.y;
+
+    if (!moveTimer) {
+      moveTimer = window.setInterval(moveTowardsTarget, moveInterval);
+    }
   };
 
   // 监听器设置和清理...

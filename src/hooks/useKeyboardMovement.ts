@@ -1,4 +1,5 @@
 import { ref, onMounted, onUnmounted, type Ref } from 'vue';
+const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
 
 const MOVE_INTERVAL = 100; // 可以根据需要调整
 
@@ -6,7 +7,6 @@ export function useKeyboardMovement(
   cursorX: Ref,
   cursorY: Ref,
   options: {
-    step: number;
     mapWidth: number;
     mapHeight: number;
   },
@@ -18,24 +18,24 @@ export function useKeyboardMovement(
 
   const setCursorPosition = (ev: KeyboardEvent) => {
     if (ev.key === 'ArrowUp') {
-      cursorY.value -= options.step;
+      cursorY.value -= GRID_SIZE;
       if (cursorY.value < 0) {
         cursorY.value = 0;
       }
     } else if (ev.key === 'ArrowDown') {
-      cursorY.value += options.step;
-      if (cursorY.value > options.mapHeight - options.step) {
-        cursorY.value = options.mapHeight - options.step;
+      cursorY.value += GRID_SIZE;
+      if (cursorY.value > options.mapHeight - GRID_SIZE) {
+        cursorY.value = options.mapHeight - GRID_SIZE;
       }
     } else if (ev.key === 'ArrowLeft') {
-      cursorX.value -= options.step;
+      cursorX.value -= GRID_SIZE;
       if (cursorX.value < 0) {
         cursorX.value = 0;
       }
     } else if (ev.key === 'ArrowRight') {
-      cursorX.value += options.step;
-      if (cursorX.value > options.mapWidth - options.step) {
-        cursorX.value = options.mapWidth - options.step;
+      cursorX.value += GRID_SIZE;
+      if (cursorX.value > options.mapWidth - GRID_SIZE) {
+        cursorX.value = options.mapWidth - GRID_SIZE;
       }
     }
   };

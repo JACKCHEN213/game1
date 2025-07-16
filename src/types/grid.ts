@@ -5,4 +5,9 @@ enum GridColor {
   ATTACK = '#FF0000',
 }
 
-export { GridColor };
+interface GridPosition {
+  x: number;
+  y: number;
+}
+
+export { GridColor, type GridPosition };

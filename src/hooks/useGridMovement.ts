@@ -6,7 +6,6 @@ export function useGridMovement(
   cursorX: Ref,
   cursorY: Ref,
   options: {
-    step: number;
     mapWidth: number;
     mapHeight: number;
     elementRef?: Ref<HTMLElement | null>;

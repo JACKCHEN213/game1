@@ -3,9 +3,8 @@
 </script>
 
 <script setup lang="ts">
-  import { ref, computed } from 'vue';
-  import Archer from '@/game/character/Archer';
-  import { useHumanStore } from '@/stores/human';
+  import { ref, computed, type Ref } from 'vue';
+  import BaseCharacter from '@/game/character/BaseCharacter';
 
   const characterMove = defineModel('characterMove', {
     type: String,
@@ -18,11 +17,17 @@
     type: Number,
     default: 0,
   });
+  const characterObj = defineModel('character', {
+    type: BaseCharacter,
+    validator: (value) => {
+      return value instanceof BaseCharacter;
+    },
+  }) as Ref<BaseCharacter>;
 
   // 计算背景位置
   const backgroundPosition = computed(() => {
     const position =
-      archerObj.spriteDefine.move[characterMove.value as (typeof MOVE_DIRECTIONS)[number]][
+      characterObj.value.spriteDefine.move[characterMove.value as (typeof MOVE_DIRECTIONS)[number]][
         characterPositionIndex.value
       ];
     return `${position.x}px ${position.y}px`;
@@ -30,41 +35,32 @@
 
   // 计算背景大小
   const backgroundSize = computed(() => {
-    const { width, height, scale } = archerObj.spriteDefine.move.size;
+    const { width, height, scale } = characterObj.value.spriteDefine.move.size;
     return `${Math.ceil(width * scale)}px ${Math.ceil(height * scale)}px`;
   });
 
-  const humanElement = ref();
-  const cursorSize: number = parseInt(import.meta.env.VITE_GRID_SIZE);
-  const archerObj = new Archer();
-  const humanState = useHumanStore();
-
-  function humanClick() {
-    if (humanState.select_human_flag) {
-      humanState.select_human_flag = false;
-    } else {
-      humanState.select_human_flag = true;
-    }
-  }
+  const characterElement = ref();
+  const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
 </script>
 
 <template>
   <div
-    ref="humanElement"
-    class="human"
+    ref="characterElement"
+    class="character"
     :style="{
-      'background-image': `url('${archerObj.characterImageUrl}')`,
+      'background-image': `url('${characterObj.characterImageUrl}')`,
       'background-position': backgroundPosition,
       'background-size': backgroundSize,
-      width: `${cursorSize}px`,
-      height: `${cursorSize}px`,
+      width: `${GRID_SIZE}px`,
+      height: `${GRID_SIZE}px`,
+      top: `${characterObj.currentSpritePosition.y}px`,
+      left: `${characterObj.currentSpritePosition.x}px`,
     }"
-    @click="humanClick"
   />
 </template>
 
 <style scoped>
-  .human {
+  .character {
     position: absolute;
     top: 0;
     border: 1px solid yellow;

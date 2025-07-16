@@ -115,6 +115,8 @@ class BaseCharacter implements ICharacter {
     attack: {},
   };
 
+  currentSpritePosition: spritePosition;
+
   movementCostModifiers: { terrain: TerrainType; additive?: number }[] = [];
   skills: SkillType[] = [];
 
@@ -170,6 +172,8 @@ class BaseCharacter implements ICharacter {
       },
       attack: {},
     };
+
+    this.currentSpritePosition = options?.currentSpritePosition ?? { x: 0, y: 0 };
 
     this.movementCostModifiers = options?.movementCostModifiers ?? [];
     this.skills = options?.skills ?? [];

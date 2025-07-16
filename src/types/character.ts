@@ -98,6 +98,8 @@ interface ICharacter {
   };
   characterPortraitUrl: string; // 角色立绘
 
+  currentSpritePosition: spritePosition;
+
   // 角色修正
   movementCostModifiers: {
     // 地形移动成本修正
