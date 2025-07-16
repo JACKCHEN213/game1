@@ -16,16 +16,26 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 yarn
 ```
 
+### sqlite3
+
+If add sqlite3 failed, maybe you should install [Visual Studio Community 2022](https://visualstudio.microsoft.com/zh-hans/vs/community/?WT.mc_id=tozimmergren&ref=zimmergren.net), to install Desktop Development Using C++ and MSVC v143-VS 2022 C++ x64/x86 Generation Tool.
+
+![Visual Studio Community 2022](./images/Visual Studio Community 2022.png)
+
 ### Compile and Hot-Reload for Development
 
 ```sh
 yarn dev
+yarn dev:client
+yarn dev:server
 ```
 
 ### Compile and Minify for Production
 
 ```sh
 yarn build
+yarn build:client
+yarn build:server
 ```
 
 ### Code Format
