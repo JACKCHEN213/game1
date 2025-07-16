@@ -67,11 +67,11 @@ yarn cz
     import { ref, reactive, onMounted, onUnmounted } from 'vue';
     import { useFetch } from '@/composables/useFetch';
 
-// 📌 3. 常量定义
+    // 📌 3. 常量定义
     const API_URL = 'https://api.example.com';
     const MAX_ITEMS = 10;
 
-// 📌 4. 响应式数据
+    // 📌 4. 响应式数据
     const count = ref(0);
     const state = reactive({
       list: [] as string[],
@@ -79,10 +79,10 @@ yarn cz
     });
     const doubled = computed(() => count.value * 2);
 
-// 📌 5. 自定义 Hooks
+    // 📌 5. 自定义 Hooks
     const { data, error } = useFetch(API_URL);
 
-// 📌 6. 函数定义
+    // 📌 6. 函数定义
     function increment() {
       count.value++;
     }
@@ -92,7 +92,7 @@ yarn cz
       // ...调用 API
     }
 
-// 📌 7. 生命周期钩子
+    // 📌 7. 生命周期钩子
     onMounted(() => {
       console.log('组件挂载');
       fetchData();
@@ -103,7 +103,7 @@ yarn cz
       clearTimeout(timer);
     });
 
-// 📌 8. 侦听器
+    // 📌 8. 侦听器
     watch(count, (newVal) => {
       console.log('count 变化:', newVal);
     });
@@ -114,7 +114,7 @@ yarn cz
       }
     });
 
-// 📌 9. 暴露内容（可选）
+    // 📌 9. 暴露内容（可选）
     defineExpose({
       increment,
     });
