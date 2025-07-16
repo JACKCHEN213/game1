@@ -51,8 +51,8 @@ yarn cz
 ### script setup edit sequence
 
 ```typescript
+  <script setup lang="ts">
     // 📌 1. 类型定义
-    <script setup lang="ts">
     interface Props {
       id: number;
       title?: string;
