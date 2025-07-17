@@ -24,22 +24,22 @@
     },
   });
 
-  const routeElement = ref();
+  const moveGridElement = ref();
   const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
 
   onMounted(() => {
-    routeElement.value.style['background-color'] = color;
-    routeElement.value.style['opacity'] = '0.5';
-    routeElement.value.style['top'] = `${top + 0.5}px`;
-    routeElement.value.style['left'] = `${left + 0.5}px`;
-    routeElement.value.style['bottom'] = `${bottom}px`;
-    routeElement.value.style['right'] = `${right}px`;
+    moveGridElement.value.style['background-color'] = color;
+    moveGridElement.value.style['opacity'] = '0.5';
+    moveGridElement.value.style['top'] = `${top + 0.5}px`;
+    moveGridElement.value.style['left'] = `${left + 0.5}px`;
+    moveGridElement.value.style['bottom'] = `${bottom}px`;
+    moveGridElement.value.style['right'] = `${right}px`;
   });
 </script>
 <template>
   <div
-    ref="routeElement"
-    class="route"
+    ref="moveGridElement"
+    class="moveGrid"
     :style="{
       width: GRID_SIZE - 1 + 'px',
       height: GRID_SIZE - 1 + 'px',
@@ -48,7 +48,8 @@
 </template>
 
 <style scoped>
-  .route {
+  .moveGrid {
     position: absolute;
+    z-index: var(--z-index-map-move-grid);
   }
 </style>

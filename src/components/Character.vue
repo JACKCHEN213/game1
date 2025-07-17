@@ -62,6 +62,7 @@
 <style scoped>
   .character {
     position: absolute;
+    z-index: var(--z-index-map);
     top: 0;
     border: 1px solid yellow;
     image-rendering: pixelated;

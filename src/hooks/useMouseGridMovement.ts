@@ -1,5 +1,6 @@
 import { onMounted, onUnmounted, type Ref } from 'vue';
 import { useRelativePosition } from '@/hooks/useRelativePosition';
+import { useDefaultStore } from '@/stores';
 const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
 
 const VITE_ENABLE_MOUSE: boolean = parseInt(import.meta.env.VITE_ENABLE_MOUSE) === 1;
@@ -19,6 +20,10 @@ export function useMouseGridMovement(
   let targetY = cursorY.value;
 
   const moveTowardsTarget = () => {
+    const characterState = useDefaultStore();
+    if (characterState.show_menu_flag) {
+      return;
+    }
     const dx = targetX - cursorX.value;
     const dy = targetY - cursorY.value;
 

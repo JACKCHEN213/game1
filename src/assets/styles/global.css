@@ -1,0 +1,9 @@
+:root {
+  /* 层级管理 */
+  --z-index-map: 100;
+  --z-index-character: 200;
+  --z-index-character-move-grid: 201;
+  --z-index-cursor: 300;
+  --z-index-map-menu-shadow: 400;
+  --z-index-map-menu: 401;
+}

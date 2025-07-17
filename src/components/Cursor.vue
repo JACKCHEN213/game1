@@ -39,5 +39,6 @@
 <style scoped>
   #cursor {
     position: absolute;
+    z-index: var(--z-index-cursor);
   }
 </style>

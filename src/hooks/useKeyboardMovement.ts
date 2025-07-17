@@ -1,4 +1,6 @@
 import { ref, onMounted, onUnmounted, type Ref } from 'vue';
+import { useDefaultStore } from '@/stores';
+
 const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
 
 const MOVE_INTERVAL = 100; // 可以根据需要调整
@@ -17,6 +19,10 @@ export function useKeyboardMovement(
   let moveTimer: number | null = null;
 
   const setCursorPosition = (ev: KeyboardEvent) => {
+    const characterState = useDefaultStore();
+    if (characterState.show_menu_flag) {
+      return;
+    }
     if (ev.key === 'ArrowUp') {
       cursorY.value -= GRID_SIZE;
       if (cursorY.value < 0) {

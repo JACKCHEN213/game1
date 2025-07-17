@@ -24,11 +24,12 @@
 
   import Cursor from './Cursor.vue';
   import Character from './Character.vue';
+  import MapMenu from './MapMenu.vue';
   import { ref, onMounted, onUnmounted } from 'vue';
   import { useGridMovement } from '@/hooks/useGridMovement';
   import { useCharacterMoveRange } from '@/hooks/useCharacterMoveRange';
   import { useRelativePosition } from '@/hooks/useRelativePosition';
-  import { useCharacterStore } from '@/stores/character';
+  import { useDefaultStore } from '@/stores';
   import { useTeamStore } from '@/stores/team';
   import MoveGrid from './MoveGrid.vue';
   import { GridColor, type GridPosition } from '@/types/grid';
@@ -47,7 +48,7 @@
   const downMoveElement = ref<HTMLButtonElement | null>(null);
   const upMoveElement = ref<HTMLButtonElement | null>(null);
   const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
-  const characterState = useCharacterStore();
+  const defaultState = useDefaultStore();
   const teamState = useTeamStore();
 
   let characterAnimationInterval: number | null = null;
@@ -62,24 +63,24 @@
   //////////////////// 开始-函数定义 ////////////////////
 
   function characterClicked(character: ICharacter) {
-    if (characterState.select_flag) {
-      characterState.select_flag = false;
-      characterState.current_character_id = '';
-      characterState.move_grid_range_list = [];
-      characterState.attack_grid_range_list = [];
+    if (defaultState.select_flag) {
+      defaultState.select_flag = false;
+      defaultState.current_character_id = '';
+      defaultState.move_grid_range_list = [];
+      defaultState.attack_grid_range_list = [];
       characterMove.value = 'stand';
     } else {
-      characterState.select_flag = true;
-      characterState.current_character_id = character.id;
+      defaultState.select_flag = true;
+      defaultState.current_character_id = character.id;
       const moveRange = useCharacterMoveRange(character.id);
       for (const gridPosition of moveRange.move_range) {
-        characterState.move_grid_range_list.push({
+        defaultState.move_grid_range_list.push({
           y: gridPosition.y,
           x: gridPosition.x,
         });
       }
       for (const gridPosition of moveRange.attack_range) {
-        characterState.attack_grid_range_list.push({
+        defaultState.attack_grid_range_list.push({
           y: gridPosition.y,
           x: gridPosition.x,
           color: GridColor.ATTACK,
@@ -103,22 +104,29 @@
 
   function doCharacterMove({ x, y }: GridPosition, character: ICharacter): Promise<null> {
     return new Promise((resolve) => {
+      if (characterMoveInterval) {
+        clearInterval(characterMoveInterval);
+      }
       if (x === character.currentSpritePosition.x) {
         if (y > character.currentSpritePosition.y) {
-          const downInterval = setInterval(() => {
+          characterMoveInterval = setInterval(() => {
             characterMove.value = 'down';
             if (character.currentSpritePosition.y >= y) {
-              clearInterval(downInterval);
+              if (characterMoveInterval) {
+                clearInterval(characterMoveInterval);
+              }
               characterMove.value = 'stand';
               return resolve(null);
             }
             character.currentSpritePosition.y += 4;
           }, 100);
         } else {
-          const upInterval = setInterval(() => {
+          characterMoveInterval = setInterval(() => {
             characterMove.value = 'up';
             if (character.currentSpritePosition.y <= y) {
-              clearInterval(upInterval);
+              if (characterMoveInterval) {
+                clearInterval(characterMoveInterval);
+              }
               characterMove.value = 'stand';
               return resolve(null);
             }
@@ -127,20 +135,24 @@
         }
       } else {
         if (x > character.currentSpritePosition.x) {
-          const rightInterval = setInterval(() => {
+          characterMoveInterval = setInterval(() => {
             characterMove.value = 'right';
             if (character.currentSpritePosition.x >= x) {
-              clearInterval(rightInterval);
+              if (characterMoveInterval) {
+                clearInterval(characterMoveInterval);
+              }
               characterMove.value = 'stand';
               return resolve(null);
             }
             character.currentSpritePosition.x += 4;
           }, 100);
         } else {
-          const leftInterval = setInterval(() => {
+          characterMoveInterval = setInterval(() => {
             characterMove.value = 'left';
             if (character.currentSpritePosition.x <= x) {
-              clearInterval(leftInterval);
+              if (characterMoveInterval) {
+                clearInterval(characterMoveInterval);
+              }
               characterMove.value = 'stand';
               return resolve(null);
             }
@@ -152,7 +164,7 @@
   }
 
   async function characterMoveClicked({ x, y }: GridPosition) {
-    const character = teamState.getCharacterById(characterState.current_character_id);
+    const character = teamState.getCharacterById(defaultState.current_character_id);
     if (!character) {
       return;
     }
@@ -174,7 +186,7 @@
 
   function judgeMoveRangeClick({ x, y }: GridPosition): Promise<GridPosition> {
     return new Promise((resolve, reject) => {
-      for (const moveGrid of characterState.move_grid_range_list) {
+      for (const moveGrid of defaultState.move_grid_range_list) {
         if (moveGrid.x === x && moveGrid.y === y) {
           characterMoveClicked({ x, y });
           return reject();
@@ -196,8 +208,15 @@
       .then(judgeMoveRangeClick)
       .then(({ x, y }: GridPosition) => {
         console.log(x, y);
+        defaultState.select_flag = false;
+        defaultState.move_grid_range_list = [];
+        defaultState.attack_grid_range_list = [];
       })
       .catch(() => {}); // 这里在reject里面处理逻辑
+  }
+
+  function mapContextMenu() {
+    defaultState.show_menu_flag = !defaultState.show_menu_flag;
   }
 
   // 开始动画
@@ -302,18 +321,20 @@
         height: mapHeight + 'px',
         'background-image': `url('${mapUrl}')`,
       }"
+      class="map"
       @click="mapClick"
+      @contextmenu.prevent="mapContextMenu"
     >
       <div ref="moveGridWrapperElement" class="moveGrid">
         <MoveGrid
-          v-for="(grid, index) in characterState.move_grid_range_list"
+          v-for="(grid, index) in defaultState.move_grid_range_list"
           :key="index"
           :top="grid.y"
           :left="grid.x"
           :color="grid.color"
         />
         <MoveGrid
-          v-for="(grid, index) in characterState.attack_grid_range_list"
+          v-for="(grid, index) in defaultState.attack_grid_range_list"
           :key="index"
           :top="grid.y"
           :left="grid.x"
@@ -336,6 +357,8 @@
           :character="character"
         />
       </div>
+
+      <MapMenu v-show="defaultState.show_menu_flag" />
     </div>
   </div>
   <div>
@@ -366,6 +389,11 @@
   .wrapper {
     position: relative;
     transform-origin: top left;
+  }
+
+  .map {
+    position: relative;
+    z-index: var(--z-index-map);
   }
 
   select:not(:last-child),
