@@ -67,7 +67,7 @@
     padding: 0;
     padding: 5px;
     border-radius: 5px;
-    background-color: skyblue;
+    background-color: #87ceebdd;
     color: white;
     font-size: 8px;
     list-style: none;
