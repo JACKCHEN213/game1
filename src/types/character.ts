@@ -1,27 +1,30 @@
 import { SkillType } from './skill';
 
 enum CharacterType {
+  // 下级职业
+  Soldier = 'soldier', // 士兵
   // 基础职业
   Lord = 'lord', // 领主
   Archer = 'archer', // 弓箭手
   Thief = 'thief', // 盗贼
-  Dancer = 'dancer', // 舞者
-  Songstress = 'songstress', // 歌姬
+  Dancer = 'dancer', // 舞者(Ninian)
+  Songstress = 'songstress', // 歌姬(Akuya)
+  Bard = 'bard', // 吟游诗人(Nils)
   Fighter = 'fighter', // 战士
-  Swordsman = 'swordsman', // 剑士
+  Myrmidon = 'myrmidon', // 剑士
   Mercenary = 'mercenary', // 佣兵
+  Knight = 'knight', // 重甲
   Brigand = 'brigand', // 山贼
   Pirate = 'pirate', // 海盗
   Monk = 'monk', // 修道士
-  Priest = 'priest', // 修女
+  Cleric = 'cleric', // 修女
   Mage = 'mage', // 魔道士
-  Wizard = 'wizard', // 巫师
-  Knight = 'knight', // 骑士
-  JungleKnight = 'jungle_knight', // 丛林骑士
-  LightCavalry = 'light_cavalry', // 轻骑兵
-  HeavyCavalry = 'heavy_cavalry', // 重骑兵
+  Shaman = 'shaman', // 巫师
+  Troubadour = 'troubadour', // 魔法骑士
+  Nomad = 'nomad', // 游牧民
+  Cavalier = 'cavalier', // 骑士
   PegasusKnight = 'pegasus_knight', // 天马骑士
-  WyvernKnight = 'wyvern_knight', // 飞龙骑士
+  WyvernRider = 'wyvern_rider', // 飞龙骑士
   SupplyTeam = 'supply_team', // 输送队
   // 上级职业
   GreatLord = 'great_lord', // 大领主
@@ -33,16 +36,21 @@ enum CharacterType {
   Berserker = 'berserker', // 狂战士
   Sniper = 'sniper', // 狙击手
   General = 'general', // 将军
-  GreatKnight = 'great_knight', // 大骑士
-  DragonRider = 'dragon_rider', // 龙骑将
   FalconKnight = 'falcon_knight', // 隼骑士
+  DragonRider = 'dragon_rider', // 龙骑将
+  WyvernLord = 'wyvern_lord', // 飞龙领主
   Bishop = 'bishop', // 主教
   Sage = 'sage', // 贤者
   Druid = 'druid', // 德鲁伊
+  NomadTrooper = 'nomad_trooper', // 游牧骑士
   Valkyrie = 'valkyrie', //  女武神
-  MageKnight = 'mage_knight', // 法师骑士
   Carriage = 'carriage', // 马车
   Warrior = 'warrior', // 勇士
+  // 顶级职业
+  ArchSage = 'arch_sage', // 大贤者(Athos)
+  DarkDruid = 'dark_druid', // 灾难招致者(Nergal)
+  MagicSeal = 'magic_seal', // 魔法封印师(Kishuna)
+  Bramimond = 'bramimond', // 普拉米蒙德
 }
 
 interface IMove {

@@ -4,6 +4,7 @@ export default {
   },
   character: {
     archer: '弓箭手',
+    swordman: '剑士',
   },
   map: {
     plain: '平原',
