@@ -1,30 +1,35 @@
 <script setup lang="ts">
   import { ref } from 'vue';
+  import $t from '@/utils/i18n';
 
   const menuTypeEnum = ref<{ menuType: number; menuName: string }[]>([
     {
       menuType: 1,
-      menuName: '队伍',
+      menuName: $t('menu.team'),
     },
     {
       menuType: 2,
-      menuName: '结束回合',
+      menuName: $t('menu.over'),
     },
     {
       menuType: 3,
-      menuName: '中断',
+      menuName: $t('menu.interrupt'),
     },
     {
       menuType: 4,
-      menuName: '保存进度',
+      menuName: $t('menu.save'),
     },
     {
       menuType: 5,
-      menuName: '环境设置',
+      menuName: $t('menu.load'),
     },
     {
       menuType: 6,
-      menuName: '返回主菜单',
+      menuName: $t('menu.environment'),
+    },
+    {
+      menuType: 7,
+      menuName: $t('menu.menu'),
     },
   ]);
 
@@ -62,8 +67,8 @@
     z-index: var(--z-index-map-menu);
     top: 20px;
     left: 100px;
-    width: 60px;
-    height: 100px;
+    width: 40px;
+    height: 95px;
     padding: 0;
     padding: 5px;
     border-radius: 5px;

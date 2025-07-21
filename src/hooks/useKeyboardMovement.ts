@@ -17,38 +17,50 @@ export function useKeyboardMovement(
   // const cursorY = ref(initialY);
   const activeKeys = ref(new Set<string>());
   let moveTimer: number | null = null;
+  const allowKeyList = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 's', 'd', 'a'];
 
   const setCursorPosition = (ev: KeyboardEvent) => {
     const characterState = useDefaultStore();
     if (characterState.show_menu_flag) {
       return;
     }
-    if (ev.key === 'ArrowUp') {
-      cursorY.value -= GRID_SIZE;
-      if (cursorY.value < 0) {
-        cursorY.value = 0;
-      }
-    } else if (ev.key === 'ArrowDown') {
-      cursorY.value += GRID_SIZE;
-      if (cursorY.value > options.mapHeight - GRID_SIZE) {
-        cursorY.value = options.mapHeight - GRID_SIZE;
-      }
-    } else if (ev.key === 'ArrowLeft') {
-      cursorX.value -= GRID_SIZE;
-      if (cursorX.value < 0) {
-        cursorX.value = 0;
-      }
-    } else if (ev.key === 'ArrowRight') {
-      cursorX.value += GRID_SIZE;
-      if (cursorX.value > options.mapWidth - GRID_SIZE) {
-        cursorX.value = options.mapWidth - GRID_SIZE;
-      }
+    switch (ev.key) {
+      case 'ArrowUp':
+      case 'w':
+        cursorY.value -= GRID_SIZE;
+        if (cursorY.value < 0) {
+          cursorY.value = 0;
+        }
+        break;
+      case 'ArrowDown':
+      case 's':
+        cursorY.value += GRID_SIZE;
+        if (cursorY.value > options.mapHeight - GRID_SIZE) {
+          cursorY.value = options.mapHeight - GRID_SIZE;
+        }
+        break;
+      case 'ArrowLeft':
+      case 'a':
+        cursorX.value -= GRID_SIZE;
+        if (cursorX.value < 0) {
+          cursorX.value = 0;
+        }
+        break;
+      case 'ArrowRight':
+      case 'd':
+        cursorX.value += GRID_SIZE;
+        if (cursorX.value > options.mapWidth - GRID_SIZE) {
+          cursorX.value = options.mapWidth - GRID_SIZE;
+        }
+        break;
+      default:
+        break;
     }
   };
 
   const handleKeyDown = (ev: KeyboardEvent) => {
     // 只处理方向键
-    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(ev.key)) {
+    if (allowKeyList.includes(ev.key)) {
       // 防止重复添加
       if (!activeKeys.value.has(ev.key)) {
         activeKeys.value.add(ev.key);
@@ -72,7 +84,7 @@ export function useKeyboardMovement(
   };
 
   const handleKeyUp = (ev: KeyboardEvent) => {
-    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(ev.key)) {
+    if (allowKeyList.includes(ev.key)) {
       activeKeys.value.delete(ev.key);
       // 如果没有按下的键了，清除定时器
       if (activeKeys.value.size === 0 && moveTimer) {
