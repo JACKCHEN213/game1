@@ -33,9 +33,23 @@
     return `${position.x}px ${position.y}px`;
   });
 
+  // 计算x缩放
+  const transform = computed(() => {
+    const position =
+      characterObj.value.spriteDefine.move[characterMove.value as (typeof MOVE_DIRECTIONS)[number]][
+        characterPositionIndex.value
+      ];
+    return position.scaleX;
+  });
+
   // 计算背景大小
   const backgroundSize = computed(() => {
-    const { width, height, scale } = characterObj.value.spriteDefine.move.size;
+    const { width, height } = characterObj.value.spriteDefine.move.size;
+    const position =
+      characterObj.value.spriteDefine.move[characterMove.value as (typeof MOVE_DIRECTIONS)[number]][
+        characterPositionIndex.value
+      ];
+    const scale = position.scale as number;
     return `${Math.ceil(width * scale)}px ${Math.ceil(height * scale)}px`;
   });
 
@@ -55,6 +69,7 @@
       height: `${GRID_SIZE}px`,
       top: `${characterObj.currentSpritePosition.y}px`,
       left: `${characterObj.currentSpritePosition.x}px`,
+      transform: `scaleX(${transform})`,
     }"
   />
 </template>

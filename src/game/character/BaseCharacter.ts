@@ -92,10 +92,10 @@ class BaseCharacter implements ICharacter {
       left: spritePosition[];
       right: spritePosition[];
       stand: spritePosition[];
+      active: spritePosition[];
       size: {
         width: number;
         height: number;
-        scale: number;
       };
     };
     attack: object;
@@ -106,10 +106,10 @@ class BaseCharacter implements ICharacter {
       left: [],
       right: [],
       stand: [],
+      active: [],
       size: {
         width: 0,
         height: 0,
-        scale: 1,
       },
     },
     attack: {},
@@ -164,10 +164,10 @@ class BaseCharacter implements ICharacter {
         left: [],
         right: [],
         stand: [],
+        active: [],
         size: {
           width: 0,
           height: 0,
-          scale: 1,
         },
       },
       attack: {},

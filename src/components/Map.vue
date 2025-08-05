@@ -246,7 +246,9 @@
   }
 
   function setCharacterAnimation() {
-    characterPositionIndex.value = (characterPositionIndex.value + 1) % 3;
+    characterPositionIndex.value =
+      (characterPositionIndex.value + 1) %
+      teamState.character_list[0].spriteDefine.move[characterMove.value].length;
   }
 
   const clickDownMove = () => {
@@ -302,8 +304,9 @@
         },
       }),
     );
-    clickStartAnimation();
+    // clickStartAnimation();
   });
+
   onUnmounted(() => {
     teamState.character_list = [];
     if (characterAnimationInterval) {
@@ -368,11 +371,16 @@
       <option value="down">下</option>
       <option value="left">左</option>
       <option value="right">右</option>
+      <option value="active">活动</option>
     </select>
     <select v-model.number="characterPositionIndex" name="switchPositionIndex">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
+      <option
+        v-for="(_, index) in teamState.character_list[0]?.spriteDefine.move[characterMove]"
+        :key="index"
+        :value="index"
+      >
+        {{ index }}
+      </option>
     </select>
   </div>
   <div>

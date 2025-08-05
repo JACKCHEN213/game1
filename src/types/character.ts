@@ -59,10 +59,10 @@ interface IMove {
   left: spritePosition[];
   right: spritePosition[];
   stand: spritePosition[];
+  active: spritePosition[];
   size: {
     width: number;
     height: number;
-    scale: number;
   };
 }
 
@@ -82,6 +82,8 @@ interface IStat {
 interface spritePosition {
   x: number;
   y: number;
+  scale?: number;
+  scaleX?: number;
 }
 
 interface ICharacter {
