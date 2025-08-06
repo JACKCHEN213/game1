@@ -38,7 +38,7 @@
 
   const cursorX = ref(0);
   const cursorY = ref(0);
-  const characterMove = ref<'stand' | 'up' | 'down' | 'left' | 'right'>('stand');
+  const characterMove = ref<'stand' | 'up' | 'down' | 'left' | 'right' | 'active'>('stand');
   const characterPositionIndex = ref(0);
   const mapWrapperElement = ref<HTMLElement | null>(null);
   const mapElement = ref<HTMLElement | null>(null);
@@ -48,6 +48,9 @@
   const downMoveElement = ref<HTMLButtonElement | null>(null);
   const upMoveElement = ref<HTMLButtonElement | null>(null);
   const GRID_SIZE: number = parseInt(import.meta.env.VITE_GRID_SIZE);
+  const VITE_CHARACTER_ANIMATION_INTERVAL: number = parseInt(
+    import.meta.env.VITE_CHARACTER_ANIMATION_INTERVAL,
+  );
   const defaultState = useDefaultStore();
   const teamState = useTeamStore();
 
@@ -69,6 +72,7 @@
       defaultState.move_grid_range_list = [];
       defaultState.attack_grid_range_list = [];
       characterMove.value = 'stand';
+      characterPositionIndex.value = 0;
     } else {
       defaultState.select_flag = true;
       defaultState.current_character_id = character.id;
@@ -86,7 +90,8 @@
           color: GridColor.ATTACK,
         });
       }
-      characterMove.value = 'left';
+      characterMove.value = 'active';
+      characterPositionIndex.value = 0;
     }
   }
 
@@ -115,7 +120,8 @@
               if (characterMoveInterval) {
                 clearInterval(characterMoveInterval);
               }
-              characterMove.value = 'stand';
+              characterMove.value = 'active';
+              characterPositionIndex.value = 0;
               return resolve(null);
             }
             character.currentSpritePosition.y += 4;
@@ -127,7 +133,8 @@
               if (characterMoveInterval) {
                 clearInterval(characterMoveInterval);
               }
-              characterMove.value = 'stand';
+              characterMove.value = 'active';
+              characterPositionIndex.value = 0;
               return resolve(null);
             }
             character.currentSpritePosition.y -= 4;
@@ -141,7 +148,8 @@
               if (characterMoveInterval) {
                 clearInterval(characterMoveInterval);
               }
-              characterMove.value = 'stand';
+              characterMove.value = 'active';
+              characterPositionIndex.value = 0;
               return resolve(null);
             }
             character.currentSpritePosition.x += 4;
@@ -153,7 +161,8 @@
               if (characterMoveInterval) {
                 clearInterval(characterMoveInterval);
               }
-              characterMove.value = 'stand';
+              characterMove.value = 'active';
+              characterPositionIndex.value = 0;
               return resolve(null);
             }
             character.currentSpritePosition.x -= 4;
@@ -216,7 +225,12 @@
   }
 
   function mapContextMenu() {
-    defaultState.show_menu_flag = !defaultState.show_menu_flag;
+    if (defaultState.select_flag) {
+      const character = teamState.getCharacterById(defaultState.current_character_id);
+      characterClicked(character as ICharacter);
+    } else {
+      defaultState.show_menu_flag = !defaultState.show_menu_flag;
+    }
   }
 
   // 开始动画
@@ -228,7 +242,10 @@
     if (stopAnimationElement.value) {
       stopAnimationElement.value.disabled = false;
     }
-    characterAnimationInterval = setInterval(setCharacterAnimation, 500);
+    characterAnimationInterval = setInterval(
+      setCharacterAnimation,
+      VITE_CHARACTER_ANIMATION_INTERVAL,
+    );
   }
 
   // 停止动画
@@ -243,12 +260,13 @@
       clearInterval(characterAnimationInterval);
       characterAnimationInterval = null;
     }
+    characterPositionIndex.value = 0;
   }
 
   function setCharacterAnimation() {
     characterPositionIndex.value =
       (characterPositionIndex.value + 1) %
-      teamState.character_list[0].spriteDefine.move[characterMove.value].length;
+      teamState.character_list[0]?.spriteDefine.move[characterMove.value].length;
   }
 
   const clickDownMove = () => {
@@ -260,10 +278,11 @@
     characterMoveInterval = setInterval(() => {
       if (character.currentSpritePosition.y + 1 >= 80) {
         character.currentSpritePosition.y = 80;
+        characterPositionIndex.value = 0;
         if (characterMoveInterval) {
           clearInterval(characterMoveInterval);
           characterMoveInterval = null;
-          characterMove.value = 'left';
+          characterMove.value = 'active';
           return;
         }
       }
@@ -281,10 +300,11 @@
     characterMoveInterval = setInterval(() => {
       if (character.currentSpritePosition.y - 1 <= 0) {
         character.currentSpritePosition.y = 0;
+        characterPositionIndex.value = 0;
         if (characterMoveInterval) {
           clearInterval(characterMoveInterval);
           characterMoveInterval = null;
-          characterMove.value = 'left';
+          characterMove.value = 'active';
           return;
         }
       }
@@ -304,7 +324,7 @@
         },
       }),
     );
-    // clickStartAnimation();
+    clickStartAnimation();
   });
 
   onUnmounted(() => {

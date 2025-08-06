@@ -30,7 +30,7 @@ app.use(
 // 示例路由
 router.get('/test', (ctx: Context) => {
   ctx.type = 'html';
-  ctx.body = `<h3>Hello from Koa!!!!<img src="http://${process.env.VITE_DEV_SERVER_HOST}:${process.env.VITE_DEV_SERVER_PORT}/res/entities/archer/a008.gif"></h3>`;
+  ctx.body = `<h3>Hello from Koa!!!!<img src="http://${process.env.VITE_DEV_SERVER_HOST}:${process.env.VITE_DEV_SERVER_PORT}/res/entities/archer/archer map.png"></h3>`;
 });
 
 router.get('/list', async (ctx) => {

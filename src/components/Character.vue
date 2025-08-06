@@ -1,5 +1,5 @@
 <script lang="ts">
-  const MOVE_DIRECTIONS = ['up', 'down', 'left', 'right', 'stand'] as const;
+  const MOVE_DIRECTIONS = ['up', 'down', 'left', 'right', 'stand', 'active'] as const;
 </script>
 
 <script setup lang="ts">
